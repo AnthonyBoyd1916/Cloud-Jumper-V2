@@ -75,12 +75,14 @@ public class CloudGenerator : MonoBehaviour
 
     }
 
-    IEnumerator CreateClouds(/*CloudWalker cloudWalker*/)
+    IEnumerator CreateClouds()
     {
         float currentCloudCoverage = (float)gridCount / (float)cloudGrid.Length;
         Debug.Log("Cloud Coverage " + currentCloudCoverage);
-        
+
         while (currentCloudCoverage < percentageClouds)
+        //int numberOfClouds = 0;
+        //while (numberOfClouds < count)
         {
             Debug.Log("Within percentage ");
             bool cloudCreated = false;
@@ -91,6 +93,7 @@ public class CloudGenerator : MonoBehaviour
                 if (cloudGrid[curPos.x,curPos.z] != Grid.CLOUD)
                 {
                     Instantiate(generatedCloud,curPos,Quaternion.identity);
+                    //numberOfClouds++;
                     Debug.Log("Cloud generated");
                     gridCount++;
                     cloudGrid[curPos.x,curPos.z] = Grid.CLOUD;
@@ -100,17 +103,19 @@ public class CloudGenerator : MonoBehaviour
                     Debug.Log("Cloud Coverage Updated " + currentCloudCoverage);
                 }
             }
-
+            /*
             ChanceToStopWalker();
             ChanceToRedirectWalker();
             ChanceToCreateWalker();
             UpdateWalkerPosition();
+            */
 
-            if (cloudCreated)
-            {
+
+            //if (cloudCreated)
+            //{
                 Debug.Log("Clouds generation finished");
                 yield return new WaitForSeconds(generationTime);
-            }
+            //}
         }
     }
 
@@ -171,5 +176,19 @@ public class CloudGenerator : MonoBehaviour
             cloudWalkers[i] = foundWalker;
             Debug.Log("Walker position updated");
         }
+    }
+}
+
+public class CloudGrid
+{ 
+    public int x;
+    public int y;
+    public bool containsCloud;
+
+    public CloudGrid(int x, int y, bool containsCloud)
+    {
+        this.x = x; 
+        this.y = y; 
+        this.containsCloud = containsCloud;
     }
 }
