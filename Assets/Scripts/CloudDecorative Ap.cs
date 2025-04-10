@@ -39,22 +39,25 @@ public class CloudDecorativeAp : MonoBehaviour
         int SpawnChance = Convert.ToInt32(UnityEngine.Random.Range(1f, 3f));
 
         Vector3 rotRand = new Vector3(UnityEngine.Random.rotation.x, UnityEngine.Random.rotation.x, 180);
-        //float xRotRandB = UnityEngine.Random.rotation.x;
+        float xRotRand = UnityEngine.Random.Range(0f,360f);
         //float yRotRandB = UnityEngine.Random.rotation.y;
 
         //int xRotRandA = Convert.ToInt32((float)xRotRandB);
         //int yRotRandA = Convert.ToInt32((float)yRotRandB);
         if (SpawnChance == 1)
         {
-            Instantiate(cloud1BeingSpawned, newCloudSpawnLocation, Quaternion.Euler(rotRand));
+            GameObject cloud1Rot = Instantiate(cloud1BeingSpawned, newCloudSpawnLocation, Quaternion.identity);
+            //cloud1Rot.transform.rotation = Quaternion.Euler(xRotRand, 0, 0);
         }
         else if (SpawnChance == 2)
         {
-            Instantiate(cloud1BeingSpawned, newCloudSpawnLocation, Quaternion.Euler(rotRand));
+            GameObject cloud2Rot = Instantiate(cloud2BeingSpawned, newCloudSpawnLocation, Quaternion.identity);
+            //cloud2Rot.transform.rotation = Quaternion.Euler(xRotRand, 0, 0);
         }
         else if (SpawnChance == 3)
         {
-            Instantiate(cloud1BeingSpawned, newCloudSpawnLocation, Quaternion.Euler(rotRand));
+            GameObject cloud3Rot = Instantiate(cloud3BeingSpawned, newCloudSpawnLocation, Quaternion.identity);
+            //cloud3Rot.transform.rotation = Quaternion.Euler(xRotRand, 0, 0);
         }
     }
 }

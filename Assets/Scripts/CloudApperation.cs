@@ -25,8 +25,8 @@ public class CloudApperation : MonoBehaviour
     }
     public void GenerateRandomSpawnLocation()
     {
-        int SpawnChance = Convert.ToInt32(UnityEngine.Random.Range(1f, 3f));
-        if (SpawnChance > 2)
+        int SpawnChance = Convert.ToInt32(UnityEngine.Random.Range(1f, 6f));
+        if (SpawnChance > 5)
         {
             randomPlaceInBounds = new Vector3(UnityEngine.Random.Range(minBoundingArea.x, maxBoundingArea.x), UnityEngine.Random.Range(minBoundingArea.y, maxBoundingArea.y), UnityEngine.Random.Range(minBoundingArea.z, maxBoundingArea.z));
             CreateOneCloud(randomPlaceInBounds);

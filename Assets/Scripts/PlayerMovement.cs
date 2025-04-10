@@ -80,19 +80,18 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.y);
         rb.AddForce(transform.up * jForce, ForceMode.Impulse);
-
+        Debug.Log("Jumped");
     }
 
     private void ResetJump()
     {
         canJump = true;
+        Debug.Log("Jump Reset");
     }
-
-
 
     private void Grounded()
     {
-        onGround = Physics.Raycast(transform.position, Vector3.down, pHeight * 0.5f + 0.1f, jumpableLayers);
+        onGround = Physics.Raycast(transform.position, Vector3.down, pHeight + 0.1f, jumpableLayers);
 
         if (onGround == true && playShakeOnce == true)
         {

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7746505544220930367}
   - component: {fileID: 4349879855430034198}
   - component: {fileID: 7892412786482677531}
+  - component: {fileID: -1384570733519330008}
   m_Layer: 3
   m_Name: SmallCloud2
   m_TagString: Untagged
@@ -152,3 +153,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.493785, y: 2.1662743, z: 6.312036}
   m_Center: {x: -15.845932, y: -0.15773983, z: 0.077933}
+--- !u!114 &-1384570733519330008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449932436483912187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b1e45469865b3d49b21e23ed79279f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
