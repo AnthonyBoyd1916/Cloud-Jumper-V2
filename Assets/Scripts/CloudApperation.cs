@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CloudApperation : MonoBehaviour
 {
-    public GameObject cloudline, cloudBeingSpawned;
+    public GameObject cloudline, cloud1BeingSpawned, cloud2BeingSpawned, cloud3BeingSpawned;
     public int cloudCount;
     public Vector3 minBoundingArea, maxBoundingArea, randomPlaceInBounds;
 
@@ -24,14 +24,32 @@ public class CloudApperation : MonoBehaviour
     }
     public void GenerateRandomSpawnLocation()
     {
-        randomPlaceInBounds = new Vector3(UnityEngine.Random.Range(minBoundingArea.x, maxBoundingArea.x), UnityEngine.Random.Range(minBoundingArea.y, maxBoundingArea.y), UnityEngine.Random.Range(minBoundingArea.z, maxBoundingArea.z));
-        CreateOneCloud(randomPlaceInBounds);
+        int SpawnChance = Convert.ToInt32(UnityEngine.Random.Range(1f, 3f));
+        if (SpawnChance > 2)
+        {
+            randomPlaceInBounds = new Vector3(UnityEngine.Random.Range(minBoundingArea.x, maxBoundingArea.x), UnityEngine.Random.Range(minBoundingArea.y, maxBoundingArea.y), UnityEngine.Random.Range(minBoundingArea.z, maxBoundingArea.z));
+            CreateOneCloud(randomPlaceInBounds);
+        }
+            
     }
 
     public void CreateOneCloud(Vector3 newCloudSpawnLocation)
     {
-        Instantiate(cloudBeingSpawned, newCloudSpawnLocation, Quaternion.Euler(UnityEngine.Random.value, UnityEngine.Random.value, 180f));
+        int SpawnChance = Convert.ToInt32(UnityEngine.Random.Range(1f, 3f));
+        if (SpawnChance == 1)
+        {
+            Instantiate(cloud1BeingSpawned, newCloudSpawnLocation, Quaternion.Euler(Convert.ToInt32(UnityEngine.Random.value), Convert.ToInt32(UnityEngine.Random.value), 180));
+        }
+        else if (SpawnChance == 2)
+        {
+            Instantiate(cloud2BeingSpawned, newCloudSpawnLocation, Quaternion.Euler(Convert.ToInt32(UnityEngine.Random.value), Convert.ToInt32(UnityEngine.Random.value), 180));
+        }
+        else if (SpawnChance == 3)
+        {
+            Instantiate(cloud3BeingSpawned, newCloudSpawnLocation, Quaternion.Euler(Convert.ToInt32(UnityEngine.Random.value), Convert.ToInt32(UnityEngine.Random.value), 180));
+        }
     }
+        
 
 
     void Update()

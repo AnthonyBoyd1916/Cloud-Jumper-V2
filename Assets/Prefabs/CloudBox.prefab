@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3661631927896657970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 378737040962057432}
+  - component: {fileID: 3666625807166192912}
+  - component: {fileID: 3601070368255792440}
+  m_Layer: 0
+  m_Name: CloudBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &378737040962057432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3661631927896657970}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 70, y: 0, z: -956.1}
+  m_LocalScale: {x: 5.035763, y: 1, z: 61.831997}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3666625807166192912
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3661631927896657970}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20, y: 55, z: 1.5986637}
+  m_Center: {x: 2.1999767, y: -3.9859161, z: 0.4792827}
+--- !u!114 &3601070368255792440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3661631927896657970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7734f08b0a3d8f64a83ec65fc36ebe8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudline: {fileID: 0}
+  cloud1BeingSpawned: {fileID: 1368002772633312605, guid: b71da18c9e4685240ba0716f70a81c7d, type: 3}
+  cloud2BeingSpawned: {fileID: 3449932436483912187, guid: a969103cfd608024e82c080d8260a50e, type: 3}
+  cloud3BeingSpawned: {fileID: 4887211143195541018, guid: bf0b001bc42bbb74db544f110aeb47df, type: 3}
+  cloudCount: 1
+  minBoundingArea: {x: 0, y: 0, z: 0}
+  maxBoundingArea: {x: 0, y: 0, z: 0}
+  randomPlaceInBounds: {x: 0, y: 0, z: 0}

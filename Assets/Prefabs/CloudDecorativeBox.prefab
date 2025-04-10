@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7692036056620643026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4727331725505730619}
+  - component: {fileID: 8957009562312005060}
+  - component: {fileID: 880064617173858918}
+  m_Layer: 0
+  m_Name: CloudDecorativeBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4727331725505730619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7692036056620643026}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 42.816162, y: -156.79018, z: -925.7175}
+  m_LocalScale: {x: 5.035763, y: 1, z: 61.831997}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8957009562312005060
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7692036056620643026}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 20, y: 55, z: 1.5986637}
+  m_Center: {x: 2.1999767, y: -3.9859161, z: 0.4792827}
+--- !u!114 &880064617173858918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7692036056620643026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7734f08b0a3d8f64a83ec65fc36ebe8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudline: {fileID: 0}
+  cloud1BeingSpawned: {fileID: 5401106146261585897, guid: a4dd21f0b0e95ae4c8fb86480b4e1c5e, type: 3}
+  cloud2BeingSpawned: {fileID: 5401106146261585897, guid: a4dd21f0b0e95ae4c8fb86480b4e1c5e, type: 3}
+  cloud3BeingSpawned: {fileID: 5401106146261585897, guid: a4dd21f0b0e95ae4c8fb86480b4e1c5e, type: 3}
+  cloudCount: 100
+  minBoundingArea: {x: 0, y: 0, z: 0}
+  maxBoundingArea: {x: 0, y: 0, z: 0}
+  randomPlaceInBounds: {x: 0, y: 0, z: 0}
