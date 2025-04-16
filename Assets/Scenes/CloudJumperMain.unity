@@ -3351,6 +3351,7 @@ GameObject:
   - component: {fileID: 1739988498}
   - component: {fileID: 1739988497}
   - component: {fileID: 1739988496}
+  - component: {fileID: 1739988501}
   m_Layer: 0
   m_Name: Body
   m_TagString: Player
@@ -3383,7 +3384,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739988494}
   serializedVersion: 4
-  m_Mass: 2
+  m_Mass: 1
   m_Drag: 0.2
   m_AngularDrag: 0.2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -3505,6 +3506,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739988494}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1739988501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739988494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8acd9cfd45403d6459d82a6c2bd1e384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashKey: 101
+  dashRemaining: 3
+  dashForce: 5000
+  timeBetweenDashes: 2
+  isDashing: 0
+  playerMoveDirection: {fileID: 717169397}
 --- !u!4 &1741095014 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5051989681283239045, guid: b71da18c9e4685240ba0716f70a81c7d, type: 3}
