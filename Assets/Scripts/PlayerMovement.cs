@@ -5,15 +5,17 @@ public class PlayerMovement : MonoBehaviour
 {
     //Movement
     public float mSpeed;
+    public float rSpeed;
     public Transform orientation;
+    public Transform cameraPosition;
     float hInput, vInput;
-    public Vector3 direction;
+    public Vector3 direction, viewDirection;
     public Rigidbody rb;
     //Jumping and Drag
     public float pHeight, groundDrag;
     public LayerMask jumpableLayers;
     public bool onGround;
-    public float jForce, jCooldown, airControl;
+    public float jForce, jCooldown, airControl, jMass;
     public bool canJump;
     public KeyCode jumpKey = KeyCode.Space;
     bool playShakeOnce;
@@ -28,7 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
+        viewDirection = this.transform.position - new Vector3(cameraPosition.position.x, this.transform.position.y, cameraPosition.position.z);
+        orientation.forward = viewDirection.normalized;
         Grounded();
         Debug.Log(onGround);
         Inputs();
@@ -78,15 +81,33 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        jMass = rb.mass;
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.y);
         rb.AddForce(transform.up * jForce, ForceMode.Impulse);
+        ChangeMass();
         Debug.Log("Jumped");
     }
 
     private void ResetJump()
     {
-        canJump = true;
+        canJump = true;        
         Debug.Log("Jump Reset");
+    }
+
+    private void ChangeMass()
+    {
+        if(!onGround && (rb.linearVelocity.y > 0f || rb.angularVelocity.y > 0f))
+        {
+            rb.mass = rb.mass * 0.5f;
+        }
+        else if(!onGround && (rb.linearVelocity.y <= 0f || rb.angularVelocity.y <= 0f))
+        {
+            rb.mass = rb.mass * 2f;
+        }
+        else
+        {
+            rb.mass = jMass;
+        }
     }
 
     private void Grounded()
