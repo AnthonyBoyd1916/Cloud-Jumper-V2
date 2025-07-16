@@ -20,9 +20,13 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
     bool playShakeOnce;
 
+    //Animation
+    private Animator playerAnim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerAnim = GetComponent<Animator>();
         rb.freezeRotation = true;
         canJump = true;
         playShakeOnce = true;
@@ -64,8 +68,18 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         direction = orientation.forward * vInput + orientation.right * hInput;
-        if (onGround) rb.AddForce(direction.normalized * mSpeed * 10f, ForceMode.Force);
-        else if (!onGround) rb.AddForce(direction.normalized * mSpeed * airControl, ForceMode.Force);
+        if (onGround)
+        {
+            rb.AddForce(direction.normalized * mSpeed * 10f, ForceMode.Force);
+            playerAnim.SetBool("isMoving", true);
+            playerAnim.SetBool("inAir", false);
+        }
+        else if (!onGround)
+        {
+            rb.AddForce(direction.normalized * mSpeed * airControl, ForceMode.Force);
+            playerAnim.SetBool("isMoving", true);
+            playerAnim.SetBool("inAir", true);
+        }
     }
 
     private void VelocityControl()
@@ -82,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         jMass = rb.mass;
+        playerAnim.SetBool("isJumping", true);
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.y);
         rb.AddForce(transform.up * jForce, ForceMode.Impulse);
         ChangeMass();
@@ -90,7 +105,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void ResetJump()
     {
-        canJump = true;        
+        canJump = true;
+        playerAnim.SetBool("isJumping", false);
         Debug.Log("Jump Reset");
     }
 
@@ -112,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Grounded()
     {
-        onGround = Physics.Raycast(transform.position, Vector3.down, pHeight + 0.1f, jumpableLayers);
+        onGround = Physics.Raycast(transform.position, Vector3.down, 0.1f, jumpableLayers);
 
         if (onGround == true && playShakeOnce == true)
         {
