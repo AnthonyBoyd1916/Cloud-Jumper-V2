@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class LeapScript : MonoBehaviour
 {
@@ -20,13 +21,13 @@ public class LeapScript : MonoBehaviour
         if (Input.GetKeyUp(leapKey) && !isLeaping && leapRemaining >= 1)
         {
             isLeaping = true;
-            StartCoroutine(LeapForward());
+            StartCoroutine(LeapUp());
         }
-        else if ( Input.GetKepUp(leapKey) && !isLeaping && leapRemaining <= 0 ) { return; } 
+        else if ( Input.GetKeyUp(leapKey) && !isLeaping && leapRemaining <= 0 ) { return; } 
         else { return; }
     }
-
-    IEnumerator LeapForward()
+    
+    IEnumerator LeapUp()
     {
         Vector3 leapDirection;
         leapDirection = playerMoveDirection.up;

@@ -3081,6 +3081,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 153439813258320557, guid: db08ded44752c13418d43b397d80858b, type: 3}
   m_PrefabInstance: {fileID: 1037761455}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1683097275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1683097276}
+  - component: {fileID: 1683097277}
+  m_Layer: 0
+  m_Name: GameData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1683097276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683097275}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -366.3045, y: 29.006023, z: 1610.6638}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1683097277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683097275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d165eebe3b184479da761e576fe09a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  availableLeaps: 0
+  maxLeaps: 0
+  availableDashes: 0
+  maxDashes: 0
 --- !u!1001 &1689224670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3204,10 +3253,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1700272838}
-  - component: {fileID: 1700272837}
-  - component: {fileID: 1700272836}
-  - component: {fileID: 1700272835}
   - component: {fileID: 1700272839}
+  - component: {fileID: 1700272840}
   m_Layer: 0
   m_Name: CloudArea
   m_TagString: Untagged
@@ -3215,81 +3262,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &1700272835
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700272834}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1700272836
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700272834}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 556146c7f42909847aef0a41202a3d86, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1700272837
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1700272834}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1700272838
 Transform:
   m_ObjectHideFlags: 0
@@ -3317,6 +3289,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27507c9107d565c48b9baec3724729ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1700272840
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700272834}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 2.220446e-16, z: 9.999999}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1710108949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3389,6 +3382,7 @@ GameObject:
   - component: {fileID: 1739988497}
   - component: {fileID: 1739988496}
   - component: {fileID: 1739988501}
+  - component: {fileID: 1739988502}
   m_Layer: 0
   m_Name: Body
   m_TagString: Player
@@ -3564,6 +3558,24 @@ MonoBehaviour:
   dashForce: 5000
   timeBetweenDashes: 2
   isDashing: 0
+  playerMoveDirection: {fileID: 717169397}
+--- !u!114 &1739988502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739988494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97745a4fcf707d04bbc465d3fc3b281e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leapKey: 113
+  leapRemaining: 3
+  leapForce: 100
+  timeBetweenLeaps: 10
+  isLeaping: 0
   playerMoveDirection: {fileID: 717169397}
 --- !u!4 &1741095014 stripped
 Transform:
@@ -4860,3 +4872,4 @@ SceneRoots:
   - {fileID: 5599172214025310728}
   - {fileID: 1148994370}
   - {fileID: 465621571}
+  - {fileID: 1683097276}

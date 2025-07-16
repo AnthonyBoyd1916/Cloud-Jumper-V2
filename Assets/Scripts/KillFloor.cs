@@ -10,5 +10,6 @@ public class KillFloor : MonoBehaviour
             //SceneManager.
             SceneManager.LoadScene("CloudJumperMain");
         }
+        else { return; }
     }
 }
