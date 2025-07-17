@@ -14,14 +14,15 @@ public class PlayerDash : MonoBehaviour
 
     public void Start()
     {
-        playerRb=GetComponent<Rigidbody>();
+        dashRemaining = GameSingleton.Instance.availableDashes;
+        playerRb =GetComponent<Rigidbody>();
         sfxPlayer = GetComponent<AudioSource>();
         //playerMoveDirection=GetComponent<Transform>();
     }
 
     public void Update()
     {
-        if (Input.GetKeyUp(dashKey) && !isDashing)
+        if (Input.GetKeyUp(dashKey) && !isDashing && dashRemaining > 0)
         {
             sfxPlayer.PlayOneShot(dashSFX);
             isDashing = true;
@@ -37,6 +38,7 @@ public class PlayerDash : MonoBehaviour
         playerRb.mass = 0.1f;
         playerRb.AddForce(dashDirection.normalized * dashForce, ForceMode.VelocityChange);
         dashRemaining--;
+        GameSingleton.Instance.availableDashes = dashRemaining;
         yield return new WaitForSeconds(0.3f);
         playerRb.mass = 1f;
         yield return new WaitForSeconds(timeBetweenDashes);        

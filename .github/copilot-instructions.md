@@ -2,7 +2,7 @@
 - Project name: Cloud-Jumper-V2
 - Unity version: Unity 6000.0.53f1
 - Active game object:
-  - Name: FunctionalBody
-  - Tag: Player
-  - Layer: Default
+  - Name: LeapText
+  - Tag: Untagged
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

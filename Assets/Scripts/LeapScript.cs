@@ -14,6 +14,7 @@ public class LeapScript : MonoBehaviour
 
     public void Start()
     {
+        leapRemaining = GameSingleton.Instance.availableLeaps;
         sfxPlayer = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody>();
         //playerMoveDirection=GetComponent<Transform>();
@@ -21,7 +22,7 @@ public class LeapScript : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyUp(leapKey) && !isLeaping && leapRemaining >= 1)
+        if (Input.GetKeyUp(leapKey) && !isLeaping && leapRemaining > 0)
         {            
             sfxPlayer.PlayOneShot(leapSFX);
             isLeaping = true;           
@@ -38,6 +39,7 @@ public class LeapScript : MonoBehaviour
         playerRb.mass = 0.1f;
         playerRb.AddForce(leapDirection.normalized * leapForce, ForceMode.VelocityChange);
         leapRemaining--;
+        GameSingleton.Instance.availableLeaps = leapRemaining;
         yield return new WaitForSeconds(1f);
         playerRb.mass = 1f;
         yield return new WaitForSeconds(timeBetweenLeaps);       
