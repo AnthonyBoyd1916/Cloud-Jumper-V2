@@ -9,10 +9,13 @@ public class PlayerDash : MonoBehaviour
     public bool isDashing;
     public Transform playerMoveDirection;
     private Rigidbody playerRb;
+    public AudioClip dashSFX;
+    AudioSource sfxPlayer;
 
     public void Start()
     {
         playerRb=GetComponent<Rigidbody>();
+        sfxPlayer = GetComponent<AudioSource>();
         //playerMoveDirection=GetComponent<Transform>();
     }
 
@@ -20,6 +23,7 @@ public class PlayerDash : MonoBehaviour
     {
         if (Input.GetKeyUp(dashKey) && !isDashing)
         {
+            sfxPlayer.PlayOneShot(dashSFX);
             isDashing = true;
             StartCoroutine(DashForward());
         }
@@ -33,8 +37,9 @@ public class PlayerDash : MonoBehaviour
         playerRb.mass = 0.1f;
         playerRb.AddForce(dashDirection.normalized * dashForce, ForceMode.VelocityChange);
         dashRemaining--;
-        yield return new WaitForSeconds(timeBetweenDashes);
+        yield return new WaitForSeconds(0.3f);
         playerRb.mass = 1f;
+        yield return new WaitForSeconds(timeBetweenDashes);        
         isDashing = false;
     }
 }

@@ -9,9 +9,12 @@ public class LeapScript : MonoBehaviour
     public bool isLeaping;
     public Transform playerMoveDirection;
     private Rigidbody playerRb;
+    public AudioClip leapSFX;
+    AudioSource sfxPlayer;
 
     public void Start()
     {
+        sfxPlayer = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody>();
         //playerMoveDirection=GetComponent<Transform>();
     }
@@ -19,8 +22,9 @@ public class LeapScript : MonoBehaviour
     public void Update()
     {
         if (Input.GetKeyUp(leapKey) && !isLeaping && leapRemaining >= 1)
-        {
-            isLeaping = true;
+        {            
+            sfxPlayer.PlayOneShot(leapSFX);
+            isLeaping = true;           
             StartCoroutine(LeapUp());
         }
         else if ( Input.GetKeyUp(leapKey) && !isLeaping && leapRemaining <= 0 ) { return; } 
@@ -34,8 +38,9 @@ public class LeapScript : MonoBehaviour
         playerRb.mass = 0.1f;
         playerRb.AddForce(leapDirection.normalized * leapForce, ForceMode.VelocityChange);
         leapRemaining--;
-        yield return new WaitForSeconds(timeBetweenLeaps);
+        yield return new WaitForSeconds(1f);
         playerRb.mass = 1f;
+        yield return new WaitForSeconds(timeBetweenLeaps);       
         isLeaping = false;
     }
 }

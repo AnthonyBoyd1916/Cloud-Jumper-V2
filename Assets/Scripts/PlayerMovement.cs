@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,10 +19,13 @@ public class PlayerMovement : MonoBehaviour
     public float jForce, jCooldown, airControl, jMass;
     public bool canJump;
     public KeyCode jumpKey = KeyCode.Space;
-    bool playShakeOnce;
-
+    
     //Animation
     private Animator playerAnim;
+    public bool running;
+    public bool jumped;
+    public bool landed;
+    public bool airborne;
 
     void Start()
     {
@@ -29,15 +33,15 @@ public class PlayerMovement : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         rb.freezeRotation = true;
         canJump = true;
-        playShakeOnce = true;
+        //playShakeOnce = true;
     }
 
     void Update()
     {
         viewDirection = this.transform.position - new Vector3(cameraPosition.position.x, this.transform.position.y, cameraPosition.position.z);
         orientation.forward = viewDirection.normalized;
-        Grounded();
-        Debug.Log(onGround);
+        
+        //Debug.Log(onGround);
         Inputs();
 
         VelocityControl();
@@ -49,7 +53,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Grounded();
         Move();
+        AnimationChecks();
     }
 
     private void Inputs()
@@ -61,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = false;
             Jump();
+            jumped = true;
             Invoke(nameof(ResetJump), jCooldown);
         }
     }
@@ -68,18 +75,20 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         direction = orientation.forward * vInput + orientation.right * hInput;
-        if (onGround)
+        if (onGround && (hInput != 0f || vInput != 0f))
         {
             rb.AddForce(direction.normalized * mSpeed * 10f, ForceMode.Force);
-            playerAnim.SetBool("isMoving", true);
-            playerAnim.SetBool("inAir", false);
+            running = true;                      
         }
-        else if (!onGround)
+        else if (!onGround && (hInput != 0f || vInput != 0f))
         {
             rb.AddForce(direction.normalized * mSpeed * airControl, ForceMode.Force);
-            playerAnim.SetBool("isMoving", true);
-            playerAnim.SetBool("inAir", true);
+            running = false;
         }
+        else if (onGround && hInput == 0f && vInput == 0f) 
+        { 
+            running = false;
+        }       
     }
 
     private void VelocityControl()
@@ -96,20 +105,19 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         jMass = rb.mass;
-        playerAnim.SetBool("isJumping", true);
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.y);
         rb.AddForce(transform.up * jForce, ForceMode.Impulse);
+        //playerAnim.SetBool("isJumping", true);
+        airborne = true;
         ChangeMass();
-        Debug.Log("Jumped");
+        //Debug.Log("Jumped");
     }
 
     private void ResetJump()
     {
         canJump = true;
-        playerAnim.SetBool("isJumping", false);
         Debug.Log("Jump Reset");
     }
-
     private void ChangeMass()
     {
         if(!onGround && (rb.linearVelocity.y > 0f || rb.angularVelocity.y > 0f))
@@ -128,15 +136,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void Grounded()
     {
-        onGround = Physics.Raycast(transform.position, Vector3.down, 0.1f, jumpableLayers);
+        onGround = Physics.Raycast(transform.position, Vector3.down, pHeight + 0.1f, jumpableLayers);
 
-        if (onGround == true && playShakeOnce == true)
+        if (onGround == true)
         {
             //StartCoroutine(Land());
-            playShakeOnce = false;
+            //playShakeOnce = false;
+            //playerAnim.SetBool("isJumping", false);           
+            airborne = false;
+            landed = true;
         }
-        else if (onGround == true && playShakeOnce != true) return;
-        else if (onGround != true && playShakeOnce != true) playShakeOnce = true;
+        else if (onGround != true)
+        {
+            airborne = true;
+            landed = false;
+            return;
+        }        
     }
 
     //NO TOUCHING THIS
@@ -149,6 +164,53 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocityY = (Vector3.up * Mathf.Sqrt(-2 * gravity * tajectoryHeight));
         Vector3 velocityXZ = (displacementXZ / (Mathf.Sqrt(-2 * tajectoryHeight / gravity) + Mathf.Sqrt(2 * (displacementY - tajectoryHeight) / gravity)));
         return velocityXZ + velocityY;
+    }
+
+    public void AnimationChecks()
+    {
+        if (running == true)
+        {
+            playerAnim.SetBool("isRunning", true);
+        }
+        else if (!running)
+        {
+            playerAnim.SetBool("isRunning", false);
+        }
+
+        if (jumped == true)
+        {
+            playerAnim.SetBool("hasJumped", true); 
+            StartCoroutine(JumpReset());
+        }
+        else if (!jumped) 
+        {
+            playerAnim.SetBool("hasJumped", false);           
+        }
+
+        if (airborne)
+        {
+            playerAnim.SetBool("inAir", true);
+        }
+        else if (!airborne)
+        {
+            playerAnim.SetBool("inAir", false);
+        }
+
+        if(landed && !airborne)
+        {
+            playerAnim.SetBool("hasLanded", true);
+        }
+        else if (!landed)
+        {
+            playerAnim.SetBool("hasLanded", false);
+        }
+
+    }
+
+    IEnumerator JumpReset()
+    {        
+        yield return new WaitForSeconds(0.4f);
+        jumped = false;
     }
 
     /// CHECK POINTS
