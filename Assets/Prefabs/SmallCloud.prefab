@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 5862583260194761800}
   - component: {fileID: 5336099750086499095}
   - component: {fileID: 6393551385490501487}
+  - component: {fileID: 7162016019505357948}
   m_Layer: 0
   m_Name: SupportItemSpawnLocation
   m_TagString: Untagged
@@ -329,3 +330,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 14, y: 14, z: 14}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7162016019505357948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694042396366783112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42487cabd5909b74da1af106d2c2f2c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
