@@ -28,7 +28,7 @@ public class RunComplete : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             finalTime = GameSingleton.Instance.runTime;
-            finalScore = scoreIncrement * (Convert.ToInt32(60.0f - finalTime));
+            finalScore = scoreIncrement * (Convert.ToInt32(120.0f - finalTime));
             scoreDisplay.SetActive(true);
             scoreResult.text = "" + finalScore.ToString() + "";
 

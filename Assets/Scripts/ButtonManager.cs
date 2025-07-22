@@ -4,6 +4,12 @@ using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
+    public void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+    
     public void StartButtonClick()
     {
         SceneManager.LoadScene("CloudJumperMain");

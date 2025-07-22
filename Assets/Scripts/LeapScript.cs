@@ -47,11 +47,11 @@ public class LeapScript : MonoBehaviour
     {
         Vector3 leapDirection;
         leapDirection = playerMoveDirection.up;
-        playerRb.mass = 0.1f;
+        playerRb.mass = 0.3f;
         playerRb.AddForce(leapDirection.normalized * leapForce, ForceMode.VelocityChange);
         leapRemaining--;
         GameSingleton.Instance.availableLeaps = leapRemaining;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
         playerRb.mass = 1f;
         yield return new WaitForSeconds(timeBetweenLeaps);       
         isLeaping = false;
