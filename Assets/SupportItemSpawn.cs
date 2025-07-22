@@ -1,19 +1,27 @@
 using UnityEngine;
+using System;
+using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class SupportItemSpawn : MonoBehaviour
 {
     private bool isDash, isLeap;
+    public GameObject dashCharge;
+    public GameObject leapCharge;
+    private Vector3 spawnPosition;
 
-    void Start()
+    void Awake()
     {
-        int SpawnChance = Convert.ToInt32(UnityEngine.Random.Range(1f, 20f));
-        if (SpawnChance > 19)
+        spawnPosition = this.gameObject.transform.position;
+        int SpawnChance = Convert.ToInt32(UnityEngine.Random.Range(1f, 10f));
+        if (SpawnChance >= 8)
         {
+            Debug.Log("CHARGE SPAWNING");
             int DashorLeap = Convert.ToInt32(UnityEngine.Random.Range(0f, 2f));
-            if ((DashorLeap > 1)
+            if ((DashorLeap > 1))
             {
                 isDash = true;
-                isLeap = false;
+                isLeap = false;               
             }
             else if ((DashorLeap <= 1))
             {
@@ -24,22 +32,25 @@ public class SupportItemSpawn : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void Start()
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (isDash)
         {
-            if (isDash)
-            {
-                GameSingleton.Instance.availableDashes++;
-                isDash = false;
-                this.gameObject.Destroy();
-            }
-            else if (isLeap)
-            {
-                GameSingleton.Instance.availableLeaps++;
-                isLeap = false;
-            }
+            SpawnDash(spawnPosition);
         }
-        else { return; }
+        else if (isLeap)
+        {
+            SpawnLeap(spawnPosition);
+        }
+    }
+
+    public void SpawnDash(Vector3 dashSpawn)
+    {
+        Instantiate(dashCharge, dashSpawn, Quaternion.identity);
+    }
+
+    public void SpawnLeap(Vector3 leapSpawn)
+    {
+        Instantiate(leapCharge, leapSpawn, Quaternion.identity);
     }
 }

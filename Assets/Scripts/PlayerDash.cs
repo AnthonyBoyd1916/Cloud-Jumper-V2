@@ -31,6 +31,16 @@ public class PlayerDash : MonoBehaviour
         else { return; }
     }
 
+    public void FixedUpdate()
+    {
+        CheckDashCount();
+    }
+
+    public void CheckDashCount()
+    {
+        dashRemaining = GameSingleton.Instance.availableDashes;
+    }
+
     IEnumerator DashForward()
     {
         Vector3 dashDirection;

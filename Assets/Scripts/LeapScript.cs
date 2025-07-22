@@ -22,6 +22,7 @@ public class LeapScript : MonoBehaviour
 
     public void Update()
     {
+        
         if (Input.GetKeyUp(leapKey) && !isLeaping && leapRemaining > 0)
         {            
             sfxPlayer.PlayOneShot(leapSFX);
@@ -30,6 +31,16 @@ public class LeapScript : MonoBehaviour
         }
         else if ( Input.GetKeyUp(leapKey) && !isLeaping && leapRemaining <= 0 ) { return; } 
         else { return; }
+    }
+
+    public void FixedUpdate()
+    {
+        CheckLeapCount();
+    }
+
+    public void CheckLeapCount()
+    {
+        leapRemaining = GameSingleton.Instance.availableLeaps;
     }
     
     IEnumerator LeapUp()
